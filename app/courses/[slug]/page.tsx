@@ -1,0 +1,11 @@
+import { courses } from "@/lib/data";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+
+export default async function CourseDetails({params}:{params:Promise<{slug:string}>}) {
+  const {slug}=await params; const course=courses.find(c=>c.slug===slug); if(!course) notFound();
+  return <main>
+    <section className="bg-slate-950 py-16 text-white"><div className="container"><span className="text-blue-300">{course.category}</span><h1 className="mt-3 max-w-4xl text-4xl font-black md:text-5xl">{course.title}</h1><p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">{course.description}</p><div className="mt-7 flex flex-wrap gap-3"><span className="rounded-full bg-white/10 px-4 py-2">{course.duration}</span><span className="rounded-full bg-white/10 px-4 py-2">{course.level}</span><Link className="btn btn-primary" href="/contact">Enquire Now</Link></div></div></section>
+    <section className="container grid gap-10 py-16 md:grid-cols-[1fr_330px]"><div><h2 className="text-3xl font-black">What you will learn</h2><ul className="mt-6 grid gap-3">{course.outcomes.map(x=><li className="flex gap-3" key={x}><span className="text-blue-600">✓</span>{x}</li>)}</ul><h2 className="mt-14 text-3xl font-black">Curriculum</h2><div className="mt-6 grid gap-3">{course.modules.map((m,i)=><details className="card p-5" key={m.title} open={i===0}><summary className="cursor-pointer font-bold">{m.title}</summary><ul className="mt-4 list-disc pl-5 text-sm text-slate-600">{m.lessons.map(l=><li className="py-1" key={l}>{l}</li>)}</ul></details>)}</div></div><aside className="card h-fit p-6"><h3 className="text-xl font-black">Course Snapshot</h3><div className="mt-5 grid gap-4 text-sm"><div><b>Level</b><p className="text-slate-500">{course.level}</p></div><div><b>Duration</b><p className="text-slate-500">{course.duration}</p></div><div><b>Prerequisites</b><p className="text-slate-500">{course.prerequisites}</p></div></div><Link className="btn btn-primary mt-6 w-full" href="/contact">Join / Enquire</Link></aside></section>
+  </main>
+}

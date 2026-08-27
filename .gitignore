@@ -1,0 +1,21 @@
+node_modules/
+.next/
+out/
+build/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Logs and reports
+*.log
+coverage/
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Local OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/

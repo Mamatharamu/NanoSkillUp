@@ -1,0 +1,2 @@
+import { ContactForm } from "@/components/contact-form";
+export default function Contact(){return <main className="container py-16"><div className="mx-auto max-w-2xl"><p className="font-bold text-blue-600">GET IN TOUCH</p><h1 className="mt-2 text-4xl font-black">Let’s plan your learning journey.</h1><p className="mt-4 text-slate-600">Send an enquiry and we’ll help you choose the right course.</p><div className="card mt-10 p-7"><ContactForm/></div></div></main>}
