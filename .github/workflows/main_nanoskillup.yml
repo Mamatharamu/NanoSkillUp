@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - NanoSkillUp
+name: Build and deploy Node.js app to Azure Web App - nanoskillup
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       contents: read #This is required for actions/checkout
 
@@ -28,7 +28,7 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present
-
+      
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
@@ -51,15 +51,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_3F76C054F3AC4671BFA8D401B0BA4000 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CF314FEBC9074B13ACDED12A1316AAC5 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A1D63A247F4E4F918BFB5B988366C713 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_0433D8D6BDEB4BF7829FC4C13A6F691E }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_53858B3A8A0D4E379AFCAD1FB5694BB9 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_C29B3FAD85124AC38D047622768373B6 }}
 
       - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp
         with:
-          app-name: 'NanoSkillUp'
+          app-name: 'nanoskillup'
           slot-name: 'Production'
           package: .
           
