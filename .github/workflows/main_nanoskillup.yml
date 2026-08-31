@@ -72,5 +72,4 @@ jobs:
           app-name: 'NanoSkillUp'
           slot-name: 'Production'
           package: .
-          startup-command: 'npm start'
           
